@@ -7,24 +7,23 @@ interface Props {
 }
 
 const AddTodo: React.SFC<Props> = ({ dispatch }) => {
-  let input: any;
+  let input: HTMLInputElement | null;
 
   return (
     <div>
       <form
         onSubmit={e => {
           e.preventDefault();
-          if (!input.value.trim()) {
+          if (!input) {
             return;
           }
+
           dispatch(addTodo(input.value));
           input.value = '';
         }}
       >
         <input ref={node => input = node} />
-        <button type="submit">
-          Add Todo
-        </button>
+        <button type="submit">Add Todo</button>
       </form>
     </div>
   );
